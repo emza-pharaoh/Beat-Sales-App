@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, SafeAreaView, ImageBackground } from 'react-native'
 import { Button, Input } from '@rneui/themed';
-import React from 'react'
+import { Icon } from '@rneui/base';
+
 
 export default function WelcomeScreen() {
   return (
@@ -8,10 +9,18 @@ export default function WelcomeScreen() {
         style={styles.background}
         source={require("../Assets/img/Welcome.jpg")}
         >
-
+        
             <Input 
              placeholder='Username'
              containerStyle={styles.inputStyle}
+             leftIcon={{ type: 'evilicon', name: 'envelope', color: 'white' }}
+            />
+
+            <Input 
+             placeholder='Password'
+             containerStyle={styles.inputStyle}
+             leftIcon={{ type: 'evilicon', name: 'unlock', color: 'white' }
+            }
             />
 
     
@@ -24,9 +33,10 @@ export default function WelcomeScreen() {
 
           <Button 
           style={styles.registerbtn} 
-          title={"Register"}
+          title={"New Here?, Register!"}
           color= {'#CFA977'}
-          size="lg"
+          size="sm"
+          type='clear'
           />
             
         
@@ -45,6 +55,8 @@ const styles = StyleSheet.create({
 
     inputStyle: {
         width: 350,
+        margin: 15,
+        
         
 
     },
@@ -52,12 +64,14 @@ const styles = StyleSheet.create({
     loginbtn:{
         width: 250,
         margin:'auto',
+        marginTop: 10,
+        marginBottom: 10,
         borderRadius: 50,
     
     },
     registerbtn:{
-        width: 250,
-        marginTop: 10,
+        
+        
         marginBottom: 150,
     
     },
