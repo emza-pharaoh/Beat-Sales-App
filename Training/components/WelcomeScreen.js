@@ -1,9 +1,12 @@
 import { StyleSheet, Text, View, SafeAreaView, ImageBackground } from 'react-native'
 import { Button, Input } from '@rneui/themed';
 import { Icon } from '@rneui/base';
+import { useNavigation } from '@react-navigation/native';
 
 
 export default function WelcomeScreen() {
+    const navigation = useNavigation();
+    console.log(navigation)
   return (
         <ImageBackground 
         style={styles.background}
@@ -29,6 +32,7 @@ export default function WelcomeScreen() {
           title={"Login"}
           color= {'#FEBF23'}
           size="lg"
+          onPress={() => navigation.navigate('Home')}
           />
 
           <Button 
