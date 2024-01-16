@@ -16,8 +16,8 @@ if(navigationRef.isReady){
   return(
     
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Welcome'>
-        <Stack.Screen name='Welcome' component={WelcomeScreen} />
+      <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Welcome'>
+        <Stack.Screen  name='Welcome' component={WelcomeScreen} />
         <Stack.Screen name='Home' component={HomeScreen} />
 
       </Stack.Navigator>
