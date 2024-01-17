@@ -1,9 +1,8 @@
 import React from "react";
-import { StyleSheet} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet, View, ImageBackground, Text} from "react-native";
 import { useNavigation} from "@react-navigation/native";
 import { useState } from "react";
-import { Button, Text, Searchbar } from "react-native-paper";
+import { Button, Searchbar, DefaultTheme, ActivityIndicator } from "react-native-paper";
 
 
 
@@ -11,13 +10,49 @@ export default function HomeScreen({}) {
   const navigation = useNavigation();
   const [search, setSearch] = useState('');
 
-  return(
-    <SafeAreaView style={styles.container}>
+  const theme = {
+    ...DefaultTheme,
+    roundness: 2,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: '#CFA977',
+      accent: '#f1c40f',
+    },}
 
+  return(
+    <ImageBackground 
+    style={styles.container}
+    source={require("../Assets/img/HomepageBg.jpg")}
+    >
+      <View style={{}}>
       <Searchbar mode="bar" placeholder="Search" onChangeText={setSearch} value={search} style={{marginBottom: 100, width: 300}}/>
-        <Text styles={styles.textStyles}>This is the HomePage!</Text>
-        <Button mode="contained" icon={'chevron-left'} onPress={() => navigation.navigate('Welcome')}> Go Back </Button>
-    </SafeAreaView>
+      </View>
+
+      <ActivityIndicator animating={true} color={'#FFF'} />
+
+        <Text style={{color: '#FFF', fontSize: 24}}>This is the HomePage!</Text>
+
+
+      <View style={{flexDirection: 'row',}}>
+      <Button 
+        
+        mode="contained"
+        icon={'chevron-left'} 
+        onPress={() => navigation.navigate('Welcome')}
+        buttonColor={'#CFA977'}
+        textColor={'black'}
+        > Go Back </Button>
+        
+        <Button 
+        mode="contained"
+        icon={'chevron-right'} 
+        onPress={() => navigation.navigate('Catalogue')}
+        buttonColor={'#CFA977'}
+        textColor={'white'}
+        > Check Out Beats </Button>
+      </View>
+      
+   </ImageBackground>
     
   )
     
@@ -26,16 +61,17 @@ export default function HomeScreen({}) {
 
 const styles = StyleSheet.create({
 
-  textStyles: {
-    fontSize: 20,
-    color: 'white',
-    
-  },
+ 
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
-   
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+
+  btn: {
+    color: '#CFA977'
 
   }
 })
