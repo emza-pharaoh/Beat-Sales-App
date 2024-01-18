@@ -8,6 +8,7 @@ export default function Catalogue() {
     const navigation = useNavigation();
 
     return(
+        
         // Background Image
         <ImageBackground 
         style={styles.container}
@@ -63,6 +64,11 @@ export default function Catalogue() {
     }
 
 const styles = StyleSheet.create({
+
+    container: {
+        flex: 1,
+        justifyContent: 'center'
+    },
 
     cardContainer: {
         flex: 1,

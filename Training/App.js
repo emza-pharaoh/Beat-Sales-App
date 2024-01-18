@@ -6,6 +6,9 @@ import Catalogue from './components/Catalogue';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createNavigationContainerRef } from '@react-navigation/native';
+import * as SplashScreen from 'expo-splash-screen';
+
+
 
 
 const Stack = createNativeStackNavigator();
