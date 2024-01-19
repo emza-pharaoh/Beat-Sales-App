@@ -30,7 +30,9 @@ export default function HomeScreen({}) {
 
       <ActivityIndicator animating={true} color={'#FFF'} />
 
-        <Text style={{color: '#FFF', fontSize: 24}}>This is the HomePage!</Text>
+        <Text style={{color: '#FFF', fontSize: 24}}>Loading...
+        This will be the page you land in after logging in, it will showcase the popular producers and their beats 
+        kind of like Soundcloud vibes</Text>
 
 
       <View style={{flexDirection: 'row',}}>

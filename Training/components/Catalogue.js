@@ -1,11 +1,66 @@
-import React from "react";
-import { useNavigation } from "@react-navigation/native";
+import {React , useEffect, useState} from "react";
+import { useNavigation} from "@react-navigation/native";
 import { ScrollView, SafeAreaView, Image, TouchableOpacity, StyleSheet, ImageBackground } from "react-native";
 import { Text, Button } from "react-native-paper";
 import { Card } from "@rneui/base";
 
+// Importing the Sound/Video Library from expo
+import { Audio } from "expo-av";
+
 export default function Catalogue() {
+    // Navigation Hook that helps with page Navigation
     const navigation = useNavigation();
+    
+    //Sound State
+    const [audio, setAudio] = useState()
+    const [isPlaying, setIsPlaying] = useState(false)
+
+    async function playAudio() {
+        try {
+          console.log('Loading');
+          
+          // Use require to load the audio file
+          const { sound } = await Audio.Sound.createAsync(require('../Assets/audio/song.mp3'))
+          if(sound){
+
+            // If the sound is playing, stop it before playing again
+            if (isPlaying) {
+              console.log('Stopping currently playing sound');
+              await sound.unloadAsync();
+              setIsPlaying(!isPlaying)
+              console.log(isPlaying)
+            }else{
+                setAudio(sound);
+      
+                console.log('Playing Track');
+                
+                // Use await to wait for the playback to finish
+                await sound.playAsync();
+                setIsPlaying(true)
+                console.log(isPlaying)
+            }
+          
+          }else{
+            console.error('Failed to load audio track.');
+          }
+         
+        } catch (error) {
+          // Handle the error
+          console.error('Error playing audio:', error);
+          
+          // Optionally, you may want to unload the audio track if an error occurs
+          if (sound) {
+            await sound.unloadAsync();
+          }
+        }
+      }
+      
+
+    useEffect(() => {
+        return audio ? () => {
+            audio.unloadAsync()
+        } : undefined
+    }, [audio])
 
     return(
         
@@ -18,7 +73,7 @@ export default function Catalogue() {
           <ScrollView style={{height: '90%'}}>
 
             {/* Card 1 */}
-            <TouchableOpacity>
+            <TouchableOpacity onPress={playAudio}>
             <Card>
                 <Card.Title>
                     Melodic Trap Beat 
