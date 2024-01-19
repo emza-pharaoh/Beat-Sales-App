@@ -1,6 +1,6 @@
 import {React , useEffect, useState} from "react";
 import { useNavigation} from "@react-navigation/native";
-import { ScrollView, SafeAreaView, Image, TouchableOpacity, StyleSheet, ImageBackground } from "react-native";
+import { ScrollView, SafeAreaView, Image, TouchableOpacity, StyleSheet, ImageBackground, View } from "react-native";
 import { Text, Button } from "react-native-paper";
 import { Card } from "@rneui/base";
 
@@ -24,12 +24,7 @@ export default function Catalogue() {
           if(sound){
 
             // If the sound is playing, stop it before playing again
-            if (isPlaying) {
-              console.log('Stopping currently playing sound');
-              await sound.unloadAsync();
-              setIsPlaying(!isPlaying)
-              console.log(isPlaying)
-            }else{
+            
                 setAudio(sound);
       
                 console.log('Playing Track');
@@ -38,7 +33,7 @@ export default function Catalogue() {
                 await sound.playAsync();
                 setIsPlaying(true)
                 console.log(isPlaying)
-            }
+            
           
           }else{
             console.error('Failed to load audio track.');
@@ -54,6 +49,36 @@ export default function Catalogue() {
           }
         }
       }
+
+    //   Pause Function
+    async function pauseSound() {
+        if (audio) {
+            if(isPlaying){
+                console.log('Stopping currently playing sound');
+                await audio.pauseAsync();
+                setIsPlaying(false)
+            }else{
+                console.error('failed to Pause Audio Or is Not Playing')
+            }
+          
+        }
+      }
+
+      async function resumeSound() {
+        try {
+          if (audio) {
+            if (!isPlaying) {
+              console.log('Resuming paused sound');
+              await audio.playAsync();
+              setIsPlaying(true);
+            } else {
+              console.error('Audio is already playing');
+            }
+          }
+        } catch (error) {
+          console.error('Error resuming audio:', error);
+        }
+      }
       
 
     useEffect(() => {
@@ -61,6 +86,9 @@ export default function Catalogue() {
             audio.unloadAsync()
         } : undefined
     }, [audio])
+
+
+
 
     return(
         
@@ -73,18 +101,26 @@ export default function Catalogue() {
           <ScrollView style={{height: '90%'}}>
 
             {/* Card 1 */}
-            <TouchableOpacity onPress={playAudio}>
+           
             <Card>
+            <TouchableOpacity>
                 <Card.Title>
                     Melodic Trap Beat 
                 </Card.Title>
             <Card.Image source={require('../Assets/img/Melodic.jpg')} style={{width: '100%', height: 300, justifyContent: 'center'}} />
             <Text variant="titleMedium">probucer - EmzaPharaohBeats</Text>
             <Text variant="titleSmall">BPM - 130</Text>
+            
 
-
-            </Card>
             </TouchableOpacity>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Button mode="elevated" icon={'play'} onPress={playAudio}>Play </Button>
+            
+            <Button mode="elevated" icon={'stop'} onPress={pauseSound}>Stop</Button>
+            </View>
+            
+            </Card>
+           
 
             {/* Card 2 */}
             <TouchableOpacity>
