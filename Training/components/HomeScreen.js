@@ -10,19 +10,12 @@ export default function HomeScreen({}) {
   const navigation = useNavigation();
   const [search, setSearch] = useState('');
 
-  const theme = {
-    ...DefaultTheme,
-    roundness: 2,
-    colors: {
-      ...DefaultTheme.colors,
-      primary: '#CFA977',
-      accent: '#f1c40f',
-    },}
+
 
   return(
     <ImageBackground 
     style={styles.container}
-    source={require("../Assets/img/HomepageBg.jpg")}
+    source={require("../Assets/img/background/HomepageBg.jpg")}
     >
       <View style={{}}>
       <Searchbar mode="bar" placeholder="Search" onChangeText={setSearch} value={search} style={{marginBottom: 100, width: 300}}/>
@@ -40,7 +33,7 @@ export default function HomeScreen({}) {
         
         mode="contained"
         icon={'chevron-left'} 
-        onPress={() => navigation.navigate('Welcome')}
+        onPress={() => navigation.navigate('Login')}
         buttonColor={'#CFA977'}
         textColor={'black'}
         > Go Back </Button>
@@ -48,9 +41,11 @@ export default function HomeScreen({}) {
         <Button 
         mode="contained"
         icon={'chevron-right'} 
-        onPress={() => navigation.navigate('Catalogue')}
+        
         buttonColor={'#CFA977'}
         textColor={'white'}
+
+        onPress={() => navigation.navigate('Catalogue')}
         > Check Out Beats </Button>
       </View>
       

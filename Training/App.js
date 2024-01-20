@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, SafeAreaView, ActivityIndicator } from 'react-native';
-import WelcomeScreen from './components/WelcomeScreen';
+import LoginScreen from './components/LoginScreen';
+import RegisterScreen from './components/RegisterScreen';
 import HomeScreen from './components/HomeScreen';
 import Catalogue from './components/Catalogue';
 import { NavigationContainer } from '@react-navigation/native';
@@ -21,7 +22,8 @@ if(navigationRef.isReady){
     
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Welcome'>
-        <Stack.Screen  name='Welcome' component={WelcomeScreen} />
+        <Stack.Screen  name='Login' component={LoginScreen} />
+        <Stack.Screen  name='Register' component={RegisterScreen} />
         <Stack.Screen name='Home' component={HomeScreen} />
         <Stack.Screen name='Catalogue' component={Catalogue}/>
 
