@@ -30,7 +30,7 @@ export default function LandingScreen(){
           mode="contained"
           buttonColor={theme.colors.primary}
           textColor={theme.colors.black}
-          onPress={() => navigation.navigate('Home')
+          onPress={() => navigation.navigate('Register')
           
         
         }
@@ -44,7 +44,7 @@ export default function LandingScreen(){
           mode="contained"
           buttonColor={theme.colors.white}
           textColor={theme.colors.black}
-          onPress={() => navigation.navigate('Home')
+          onPress={() => navigation.navigate('Login')
           
         
         }
@@ -56,7 +56,7 @@ export default function LandingScreen(){
           style={styles.noAcountbtn}
           mode={'text'}
           textColor= {theme.colors.white}
-          onPress={() => navigation.navigate('Register')}
+          onPress={() => navigation.navigate('Home')}
 
           >continue without an account</Button>
 
