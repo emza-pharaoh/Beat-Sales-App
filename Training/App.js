@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, SafeAreaView, ActivityIndicator } from 'react-native';
 import LoginScreen from './components/LoginScreen';
 import RegisterScreen from './components/RegisterScreen';
-import HomeScreen from './components/HomeScreen';
+import HomeScreen from './components/HomePage/HomeScreen';
 import Catalogue from './components/Catalogue';
 import LandingScreen from './components/LandingScreen';
 import { NavigationContainer } from '@react-navigation/native';

@@ -4,7 +4,7 @@
     "slug": "Training",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icons/Logo.png",
+    "icon": "./Assets/icons/LogoPlaceholder.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./Assets/img/background/M.png",
@@ -19,7 +19,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/img/background/bg1.png",
+        "foregroundImage": "./Assets/img/background/bg1.png",
         "backgroundColor": "#ffffff"
       }
     },
