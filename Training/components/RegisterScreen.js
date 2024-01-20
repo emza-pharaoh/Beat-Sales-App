@@ -22,6 +22,9 @@ export default function RegisterScreen() {
         style={styles.background}
         source={require("../Assets/img/background/bg1.png")}
         >
+
+            <Image source={require('../Assets/icons/LogoPlaceholder.png')}/>
+            
             <View style={styles.inputView}>
 
             <TextInput
@@ -31,7 +34,7 @@ export default function RegisterScreen() {
             value={text}
             onChangeText={text => setText(text)}
             textColor={theme.colors.secondary}
-            placeholder={'Username'}
+            placeholder={'Enter Username'}
             placeholderTextColor={theme.colors.tertiary}
             />
 
@@ -42,7 +45,30 @@ export default function RegisterScreen() {
             value={text}
             onChangeText={text => setText(text)}
             textColor={theme.colors.secondary}
-            placeholder={'Password'}
+            placeholder={'Email'}
+            placeholderTextColor={theme.colors.tertiary}
+            
+            />
+
+            <TextInput
+            style={styles.inputStyle}
+            mode={'outlined'}
+            outlineStyle={{borderRadius: 10,  borderWidth: 1.5}}
+            value={text}
+            onChangeText={text => setText(text)}
+            textColor={theme.colors.secondary}
+            placeholder={'Enter Password'}
+            placeholderTextColor={theme.colors.tertiary}
+            
+            />
+            <TextInput
+            style={styles.inputStyle}
+            mode={'outlined'}
+            outlineStyle={{borderRadius: 10,  borderWidth: 1.5}}
+            value={text}
+            onChangeText={text => setText(text)}
+            textColor={theme.colors.secondary}
+            placeholder={'Confirm Password'}
             placeholderTextColor={theme.colors.tertiary}
             
             />
@@ -59,7 +85,15 @@ export default function RegisterScreen() {
           buttonColor={theme.colors.primary}
           textColor={theme.colors.black}
           onPress={() => navigation.navigate('Home')}
-          >Login</Button>
+          >Register</Button>
+
+<Button 
+          style={styles.registerbtn}
+          mode={'text'}
+          textColor= {theme.colors.tertiary}
+          onPress={() => navigation.navigate('Login')}
+
+          >I already have an account</Button>
 
         
 
@@ -104,8 +138,9 @@ const styles = StyleSheet.create({
     },
 
     inputStyle: {
+        
         width: 350,
-        marginTop: 50,
+        marginTop: 20,
         borderRadius: 10,
         backgroundColor: 'transparent'
     
@@ -123,7 +158,7 @@ const styles = StyleSheet.create({
     registerbtn:{
         
         
-        marginBottom: 50,
+        marginBottom: 20,
     
     },
 
@@ -137,7 +172,7 @@ const styles = StyleSheet.create({
         color : theme.colors.tertiary,
         margin: 10,
         marginBottom: 10,
-        marginTop: 20,
+        marginTop: 0,
         marginLeft: 25,
         alignItems: 'center',
     }

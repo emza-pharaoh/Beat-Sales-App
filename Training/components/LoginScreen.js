@@ -15,8 +15,9 @@ export default function LoginScreen() {
   return (
         <ImageBackground 
         style={styles.background}
-        source={require("../Assets/img/background/bg1.png")}
+        source={require("../Assets/img/background/bg2.png")}
         >
+            <Image source={require('../Assets/icons/LogoPlaceholder.png')}/>
             <View style={styles.inputView}>
 
             <TextInput

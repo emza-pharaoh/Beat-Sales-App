@@ -4,6 +4,7 @@ import LoginScreen from './components/LoginScreen';
 import RegisterScreen from './components/RegisterScreen';
 import HomeScreen from './components/HomeScreen';
 import Catalogue from './components/Catalogue';
+import LandingScreen from './components/LandingScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createNavigationContainerRef } from '@react-navigation/native';
@@ -21,7 +22,9 @@ if(navigationRef.isReady){
   return(
     
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Welcome'>
+      <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Landing'>
+
+        <Stack.Screen  name='Landing' component={LandingScreen} />
         <Stack.Screen  name='Login' component={LoginScreen} />
         <Stack.Screen  name='Register' component={RegisterScreen} />
         <Stack.Screen name='Home' component={HomeScreen} />
