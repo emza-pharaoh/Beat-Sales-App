@@ -11,6 +11,7 @@ export default function LoginScreen() {
     // hooks and variables
     const navigation = useNavigation();
     const [text, setText] = useState("");
+    const [text1, setText1] = useState("");
    
   return (
         <ImageBackground 
@@ -35,8 +36,8 @@ export default function LoginScreen() {
             style={styles.inputStyle}
             mode={'outlined'}
             outlineStyle={{borderRadius: 10,  borderWidth: 1.5}}
-            value={text}
-            onChangeText={text => setText(text)}
+            value={text1}
+            onChangeText={text => setText1(text)}
             textColor={theme.colors.secondary}
             placeholder={'Password'}
             placeholderTextColor={theme.colors.tertiary}

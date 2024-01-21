@@ -3,6 +3,7 @@ import { StyleSheet, View, ImageBackground, Text, ScrollView} from "react-native
 import { useNavigation} from "@react-navigation/native";
 import { useState } from "react";
 import ProfileNav from "./ProfileNav";
+import ArtistDisplay from "./ArtistDisplay";
 import theme from "../themes";
 
 
@@ -25,11 +26,19 @@ export default function HomeScreen({}) {
       </View>
 
       {/* Scroll View for Activity Feed */}
-      <View style={{flex:0.7, alignSelf: 'flex-start', marginTop: 30}}>
+      <View style={{flex:0.9, alignSelf: 'flex-start', marginTop: 30, flexDirection: 'column'}}>
       <ScrollView>
         <Text variant={'headMedium'} style={styles.textStyles}>Activity Feed</Text>
 
-      {/* Artist Profile Component */}
+      {/* Artist Profile Component - Horizontal Scroll View*/}
+      <ScrollView horizontal={true}>
+      <ArtistDisplay Username={'blaxckie'} picDir={require('../../Assets/img/profile/blxckie.jpg')} isVerified={true}/>
+      <ArtistDisplay Username={'Dj Speedsta'} picDir={require('../../Assets/img/profile/djSpeedsta.jpg')} isVerified={true}/>
+      <ArtistDisplay Username={'Scumie'} picDir={require('../../Assets/img/profile/scumie.jpg')} isVerified={false}/>
+      <ArtistDisplay Username={'Emza Pharaoh'} picDir={require('../../Assets/img/profile/EmzaPharaoh.jpeg')} isVerified={true}/>
+     
+      </ScrollView>
+      
 
       </ScrollView>
       </View>

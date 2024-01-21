@@ -16,6 +16,9 @@ export default function RegisterScreen() {
     // hooks and variables
     const navigation = useNavigation();
     const [text, setText] = useState("");
+    const [text1, setText1] = useState("");
+    const [text2, setText2] = useState("");
+    const [text3, setText3] = useState("");
    
   return (
         <ImageBackground 
@@ -42,8 +45,8 @@ export default function RegisterScreen() {
             style={styles.inputStyle}
             mode={'outlined'}
             outlineStyle={{borderRadius: 10,  borderWidth: 1.5}}
-            value={text}
-            onChangeText={text => setText(text)}
+            value={text1}
+            onChangeText={text => setText1(text)}
             textColor={theme.colors.secondary}
             placeholder={'Email'}
             placeholderTextColor={theme.colors.tertiary}
@@ -54,8 +57,8 @@ export default function RegisterScreen() {
             style={styles.inputStyle}
             mode={'outlined'}
             outlineStyle={{borderRadius: 10,  borderWidth: 1.5}}
-            value={text}
-            onChangeText={text => setText(text)}
+            value={text2}
+            onChangeText={text => setText2(text)}
             textColor={theme.colors.secondary}
             placeholder={'Enter Password'}
             placeholderTextColor={theme.colors.tertiary}
@@ -65,8 +68,8 @@ export default function RegisterScreen() {
             style={styles.inputStyle}
             mode={'outlined'}
             outlineStyle={{borderRadius: 10,  borderWidth: 1.5}}
-            value={text}
-            onChangeText={text => setText(text)}
+            value={text3}
+            onChangeText={text => setText3(text)}
             textColor={theme.colors.secondary}
             placeholder={'Confirm Password'}
             placeholderTextColor={theme.colors.tertiary}
