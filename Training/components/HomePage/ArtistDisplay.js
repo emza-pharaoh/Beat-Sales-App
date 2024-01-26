@@ -11,8 +11,9 @@ function ArtistDisplay({ Username, picDir, isVerified}){
 
 
     return(
-        <TouchableOpacity>
-            <View style={{flex: 1, marginRight: 5,marginLeft: 15}}>
+        
+        <TouchableOpacity style={{}}>
+            <View style={{flex: 1 ,marginRight: 5,marginLeft: 15}}>
                 {/* Profile Image */}
                 <Image source={picDir} style={styles.profilePic}/>
                 
@@ -37,8 +38,7 @@ export default ArtistDisplay
 const styles = StyleSheet.create({
 
     profilePic:{
-        flex: 0.13,
-        flexShrink: 1,
+        height: 120,
         width: 120,
         justifyContent: 'center',
         borderRadius: 300,
@@ -54,8 +54,6 @@ const styles = StyleSheet.create({
         marginRight: 3,
         marginTop: 5,
         alignSelf: 'flex-start'
-        
 
-        
     },
 })

@@ -20,7 +20,7 @@ export default function Catalogue() {
           console.log('Loading');
           
           // Use require to load the audio file
-          const { sound } = await Audio.Sound.createAsync(require('../Assets/audio/song.mp3'))
+          const { sound } = await Audio.Sound.createAsync(require('../../Assets/audio/song.mp3'))
           if(sound){
 
             // If the sound is playing, stop it before playing again
@@ -95,7 +95,7 @@ export default function Catalogue() {
         // Background Image
         <ImageBackground 
         style={styles.container}
-        source={require("../Assets/img/background/HomepageBg.jpg")}
+        source={require("../../Assets/img/background/HomepageBg.jpg")}
         >
             {/* Scrollable view Takes 90% of the Screen */}
           <ScrollView style={{height: '90%'}}>
@@ -107,7 +107,7 @@ export default function Catalogue() {
                 <Card.Title>
                     Melodic Trap Beat 
                 </Card.Title>
-            <Card.Image source={require('../Assets/img/beatCovers/Melodic.jpg')} style={{width: '100%', height: 300, justifyContent: 'center'}} />
+            <Card.Image source={require('../../Assets/img/beatCovers/Melodic.jpg')} style={{width: '100%', height: 300, justifyContent: 'center'}} />
             <Text variant="titleMedium">probucer - EmzaPharaohBeats</Text>
             <Text variant="titleSmall">BPM - 130</Text>
             
@@ -128,7 +128,7 @@ export default function Catalogue() {
                 <Card.Title>
                     Monte Booker Type Beat 
                 </Card.Title>
-            <Card.Image source={require('../Assets/img/beatCovers/MonteBooker.jpg')} style={{width: '100%', height: 300, justifyContent: 'center'}} />
+            <Card.Image source={require('../../Assets/img/beatCovers/MonteBooker.jpg')} style={{width: '100%', height: 300, justifyContent: 'center'}} />
             <Text variant="titleMedium">probucer - EmzaPharaohBeats</Text>
             <Text variant="titleSmall">BPM - 130</Text>
             </Card>

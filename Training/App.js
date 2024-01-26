@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, SafeAreaView, ActivityIndicator } from '
 import LoginScreen from './components/LoginScreen';
 import RegisterScreen from './components/RegisterScreen';
 import HomeScreen from './components/HomePage/HomeScreen';
-import Catalogue from './components/Catalogue';
+import Catalogue from './components/Artist Profile/Catalogue';
 import LandingScreen from './components/LandingScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -28,7 +28,7 @@ if(navigationRef.isReady){
         <Stack.Screen  name='Login' component={LoginScreen} />
         <Stack.Screen  name='Register' component={RegisterScreen} />
         <Stack.Screen name='Home' component={HomeScreen} />
-        <Stack.Screen name='Catalogue' component={Catalogue}/>
+        
 
       </Stack.Navigator>
     </NavigationContainer>
