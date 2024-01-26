@@ -19,7 +19,8 @@ export default function PlayScreen() {
 //Sound State
 const [audio, setAudio] = useState()
 const [isPlaying, setIsPlaying] = useState(false)
-const [isStop, setStop] = useState(false)
+const [progress, setProgress] = useState(0); // State to track the progress of audio playback
+
 
 async function playAudio() {
     try {
@@ -28,13 +29,10 @@ async function playAudio() {
       // Use require to load the audio file
       const { sound } = await Audio.Sound.createAsync(require('../../Assets/audio/song.mp3'))
       if(sound){
-
         // If the sound is playing, stop it before playing again
-        
             setAudio(sound);
-   
             console.log('Playing Track');
-            
+            sound.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate); // Set the playback status update callback
             // Use await to wait for the playback to finish
             await sound.playAsync();
             setIsPlaying(true)
@@ -56,7 +54,24 @@ async function playAudio() {
     }
   }
 
-//   Pause Function
+// Function to update progress based on current playback status
+async function updateProgress() {
+    try {
+      if (audio) {
+        const status = await audio.getStatusAsync();
+        const currentPosition = status.positionMillis; // Current position in milliseconds
+        const duration = status.durationMillis; // Total duration of the audio in milliseconds
+  
+        // Calculate the progress value within the range of 0 to 1
+        const calculatedProgress = duration > 0 ? currentPosition / duration : 0;
+        setProgress(calculatedProgress);
+      }
+    } catch (error) {
+      console.error('Error updating progress:', error);
+    }
+  }
+
+//Pause Function to pause the audio not stop it
 async function pauseSound() {
     if (audio) {
         if(isPlaying){
@@ -70,6 +85,7 @@ async function pauseSound() {
     }
   }
 
+//Resume Funtion to Continue playing where it was paused
   async function resumeSound() {
     try {
       if (audio) {
@@ -85,7 +101,36 @@ async function pauseSound() {
       console.error('Error resuming audio:', error);
     }
   }
-  
+
+ // Function to rewind the audio by 10 seconds
+ async function rewindSound() {
+    try {
+      if (audio) {
+        console.log('Rewinding sound');
+        const status = await audio.getStatusAsync();
+        const newPosition = Math.max(0, status.positionMillis - 10000); // Rewind by 10 seconds
+        await audio.setPositionAsync(newPosition);
+      }
+    } catch (error) {
+      console.error('Error rewinding audio:', error);
+    }
+  }
+
+ // Function to fast forward the audio by 10 seconds
+ async function fastForwardSound() {
+    try {
+      if (audio) {
+        console.log('Fast forwarding sound');
+        const status = await audio.getStatusAsync();
+        const newPosition = Math.min(status.durationMillis, status.positionMillis + 10000); // Fast forward by 10 seconds
+        await audio.setPositionAsync(newPosition);
+      }
+      console.log(progress)
+    } catch (error) {
+      console.error('Error fast forwarding audio:', error);
+    }
+  }
+
 
 useEffect(() => {
     return audio ? () => {
@@ -94,7 +139,30 @@ useEffect(() => {
 }, [audio])
 
 
+// Load and play audio when the component mounts for the first time
+useEffect(() => {
+    playAudio();
+  }, []); // Empty dependency array to run only once when component mounts
 
+
+// Update progress periodically
+useEffect(() => {
+    const interval = setInterval(() => {
+      updateProgress();
+    }, 1000); // Update progress every second
+    return () => clearInterval(interval);
+}, [updateProgress]);
+
+
+  // Function to handle playback status update
+  const onPlaybackStatusUpdate = (status) => {
+    if (status.didJustFinish) {
+      // Audio playback has finished
+      setProgress(0); // Reset progress to initial state
+      setIsPlaying(false); // Update state to indicate audio is not playing
+      
+    }
+  };
 
 /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
@@ -135,10 +203,10 @@ return(
 
         {/* Prgress Bar */}
         <View style={{marginTop: 30, alignSelf: 'center'}}>
-        <ProgressBar progress={0.2} color={theme.colors.primary} style={{width: 315, height: 5 , alignSelf: 'center', borderRadius: 5}}/>
+        <ProgressBar progress={progress} color={theme.colors.primary} style={{width: 315, height: 5 , alignSelf: 'center', borderRadius: 5}}/>
         <View style={{flexDirection: 'row', justifyContent: 'space-between', marginTop:5}}>
             <Text style={{color: theme.colors.secondary}} variant='bodySmall'>00:00</Text>
-            <Text style={{color: theme.colors.secondary}} variant='bodySmall'>00:00</Text>
+            <Text style={{color: theme.colors.secondary}} variant='bodySmall'>01:47</Text>
             
         </View>
         </View>
@@ -152,15 +220,15 @@ return(
                 <Image source={require('../../Assets/icons/Shuffle.png')} style={{margin: 20, marginTop: 40}}/>
         </TouchableOpacity>
         {/* Rewind */}
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => rewindSound()}>
                 <Image source={require('../../Assets/icons/Rewind.png')} style={{margin: 20, marginTop: 40}}/>
         </TouchableOpacity>
         {/* Play-Pause */}
-        <TouchableOpacity onPress={() => (isPlaying ? pauseSound() : playAudio())}>
+        <TouchableOpacity onPress={() => (isPlaying ? pauseSound() : resumeSound())}>
                 <Image source={ isPlaying ? require('../../Assets/icons/Pause.png') : require('../../Assets/icons/Play.png') } style={{margin: 20, marginTop: 40}}/>
         </TouchableOpacity>
         {/* Fast Forward */}
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=> fastForwardSound()}>
                 <Image source={require('../../Assets/icons/fastForward.png')} style={{margin: 20, marginTop: 40}}/>
         </TouchableOpacity>
         {/* Replay */}
