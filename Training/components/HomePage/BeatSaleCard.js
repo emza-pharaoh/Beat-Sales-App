@@ -1,12 +1,15 @@
 import React from "react"
 import { View, TouchableOpacity, Image, StyleSheet, Button } from "react-native"
 import { Text } from "react-native-paper"
-
+//Navigation Hook
+import { useNavigation } from "@react-navigation/native"
+// Themes duh!
 import theme from "../themes"
 
 
-export default function BeatsSaleCard({Username, beatImageDir, beatTitle, isVerified, BPM, Key, Comment}) {
 
+export default function BeatsSaleCard({Username, beatImageDir, beatTitle, isVerified, BPM, Key, Comment}) {
+    const navigation = useNavigation()
     return(
         // Whole Card View
         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', width: '100%', marginBottom: 25} }>
@@ -14,7 +17,7 @@ export default function BeatsSaleCard({Username, beatImageDir, beatTitle, isVeri
 
             {/* Left Section - Beat and Title */}
             <View style={{width: '45%', marginTop: 0}}>
-                <TouchableOpacity style={{flexDirection: 'column', justifyContent: 'center'}}>
+                <TouchableOpacity style={{flexDirection: 'column', justifyContent: 'center'}} onPress={() => navigation.navigate('Play') }>
 
                     <Image source={beatImageDir} style={styles.beatPic}/>
 

@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, SafeAreaView, ActivityIndicator } from 'react-native';
+//Importing Screens
 import LoginScreen from './components/LoginScreen';
 import RegisterScreen from './components/RegisterScreen';
 import HomeScreen from './components/HomePage/HomeScreen';
-import Catalogue from './components/Artist Profile/Catalogue';
 import LandingScreen from './components/LandingScreen';
+import PlayScreen from './components/Play Page/PlayScreen';
+import BeatsSaleCard from './components/HomePage/BeatSaleCard';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createNavigationContainerRef } from '@react-navigation/native';
@@ -28,6 +31,8 @@ if(navigationRef.isReady){
         <Stack.Screen  name='Login' component={LoginScreen} />
         <Stack.Screen  name='Register' component={RegisterScreen} />
         <Stack.Screen name='Home' component={HomeScreen} />
+        <Stack.Screen name='BeatCard' component={BeatsSaleCard} />
+        <Stack.Screen name='Play' component={PlayScreen} />
         
 
       </Stack.Navigator>
