@@ -20,7 +20,8 @@ export default function PlayScreen() {
 const [audio, setAudio] = useState()
 const [isPlaying, setIsPlaying] = useState(false)
 const [progress, setProgress] = useState(0); // State to track the progress of audio playback
-
+const [shuffleOn, setShuffle] = useState(false)
+const [repeatState, setRepeatState] = useState(0)
 
 async function playAudio() {
     try {
@@ -164,6 +165,34 @@ useEffect(() => {
     }
   };
 
+    // Function to handle repeat icon press
+    const handleRepeatPress = () => {
+      let nextState = repeatState + 1; // Calculate the next state
+  
+      // If the next state exceeds 2 (the maximum number of states), reset it to 0
+      if (nextState > 2) {
+        nextState = 0;
+      }
+  
+      setRepeatState(nextState); // Update the repeat icon state
+    };
+
+
+  // Function to get the appropriate repeat icon based on the current state
+  const getRepeatIcon = () => {
+    switch (repeatState) {
+      case 0:
+        return require('../../Assets/icons/ReplayOff.png'); // Off icon
+      case 1:
+        return require('../../Assets/icons/ReplayAll.png'); // On icon
+      case 2:
+        return require('../../Assets/icons/Replay.png'); // Repeat same song icon
+      default:
+        return require('../../Assets/icons/ReplayAll.png'); // Default to off icon
+    }
+  };
+  
+
 /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
@@ -216,8 +245,8 @@ return(
         <View style={{flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', marginTop: 5}}>
 
         {/* Shuffle */}
-        <TouchableOpacity>
-                <Image source={require('../../Assets/icons/Shuffle.png')} style={{margin: 20, marginTop: 40}}/>
+        <TouchableOpacity onPress={()=> ( shuffleOn ? setShuffle(false) : setShuffle(true))}>
+                <Image source={ shuffleOn ? require('../../Assets/icons/Shuffle.png') : require('../../Assets/icons/ShuffleOff.png')} style={{margin: 20, marginTop: 40}}/>
         </TouchableOpacity>
         {/* Rewind */}
         <TouchableOpacity onPress={() => rewindSound()}>
@@ -231,9 +260,9 @@ return(
         <TouchableOpacity onPress={()=> fastForwardSound()}>
                 <Image source={require('../../Assets/icons/fastForward.png')} style={{margin: 20, marginTop: 40}}/>
         </TouchableOpacity>
-        {/* Replay */}
-        <TouchableOpacity>
-                <Image source={require('../../Assets/icons/Replay.png')} style={{margin: 20, marginTop: 40}}/>
+        {/* Repeat */}
+        <TouchableOpacity onPress={handleRepeatPress}>
+                <Image source={getRepeatIcon()} style={{margin: 20, marginTop: 40}}/>
         </TouchableOpacity>
 
         </View>
