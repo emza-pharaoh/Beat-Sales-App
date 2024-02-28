@@ -7,6 +7,7 @@ import HomeScreen from './components/HomePage/HomeScreen';
 import LandingScreen from './components/LandingScreen';
 import PlayScreen from './components/Play Page/PlayScreen';
 import BeatsSaleCard from './components/HomePage/BeatSaleCard';
+import ChatPage from './components/Chat/ChatPage';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -33,6 +34,7 @@ if(navigationRef.isReady){
         <Stack.Screen name='Home' component={HomeScreen} />
         <Stack.Screen name='BeatCard' component={BeatsSaleCard} />
         <Stack.Screen name='Play' component={PlayScreen} />
+        <Stack.Screen name='Chat' component={ChatPage}/>
         
 
       </Stack.Navigator>

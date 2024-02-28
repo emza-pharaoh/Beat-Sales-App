@@ -7,7 +7,7 @@ import { useState } from "react";
 import ProfileNav from "./ProfileNav";
 import ArtistDisplay from "./ArtistDisplay";
 import BeatsSaleCard from "./BeatSaleCard";
-import BottomNav from "./BottomNav";
+import BottomNav from "../../components/BottomNav";
 
 // App Theme
 import theme from "../themes";
