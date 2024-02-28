@@ -8,6 +8,7 @@ import theme from "../themes";
 
 //Components
 import BottomNav from "../BottomNav";
+import ContactView from "./Contact";
 
 
 
@@ -35,6 +36,12 @@ export default function ChatPage() {
 
             </ImageBackground>
 
+            <View style={{marginTop: 45 }}>
+                <ContactView PicDir={require('../../Assets/img/profile/djSpeedsta.jpg')} ArtistName={'Speedsta'}/>
+                <ContactView PicDir={require('../../Assets/img/profile/blxckie.jpg')} ArtistName={'Blxckie'}/>
+                <ContactView PicDir={require('../../Assets/img/profile/scumie.jpg')} ArtistName={'Scumie'}/>
+                
+            </View>
 
 
       <View style={{position: 'absolute', bottom: 1}}>

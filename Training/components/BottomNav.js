@@ -12,7 +12,7 @@ export default function BottomNav() {
     return(
         <ImageBackground source={require('../Assets/icons/BottomNav/blurBg.png')} style={styles.background}>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=> navigation.navigate('Home')}>
                 <Image source={require('../Assets/icons/BottomNav/Iconly/Light-Outline/Home.png')} style={styles.iconStyle}/>
             </TouchableOpacity>
             <TouchableOpacity>
